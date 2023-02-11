@@ -1,6 +1,7 @@
 package com.example.blog.Model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "comentarios")
@@ -56,8 +57,11 @@ public class Comentario {
     @Column(nullable = false,name = "NUMR_autor")
     private Long autor;
     @Column(nullable = false,name = "DESC_Conteudo")
+    @Size(min = 50,max = 999,message = "Um comentário deve ter entre 50 e 999 caracteres")
     private String conteudo;
     @Column(name = "NUMG_NumeroDeLikes")
     private Integer numerodelikes;
+
+    public void daUmLikeNoComentario(){this.numerodelikes++; }
 
 }
