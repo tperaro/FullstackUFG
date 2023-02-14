@@ -10,17 +10,41 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "comentarios")
-
 public class Comentario {
-    public Comentario() {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column()
+    private Long id;
+
+    @Column(nullable = false, name = "NUMR_autor")
+    private String autor;
+
+    @Column(nullable = false, name = "DESC_Conteudo")
+    @Size(min = 50, max = 999, message = "Um comentário deve ter entre 50 e 999 caracteres")
+    private String conteudo;
+
+    @Column(name = "NUMG_NumeroDeLikes")
+    private Integer numerodelikes;
+
+    @Column(nullable = false, name = "postid")
+    private Long postId;
+
+    public Comentario() {
+    }
+
+    public Comentario(Long id, String autor, String conteudo, Integer numerodelikes) {
+        this.id = id;
+        this.autor = autor;
+        this.conteudo = conteudo;
+        this.numerodelikes = numerodelikes;
     }
 
     public void setId(Long id) {
         this.id = id;
     }
 
-    public void setAutor(Long autor) {
+    public void setAutor(String autor) {
         this.autor = autor;
     }
 
@@ -36,7 +60,7 @@ public class Comentario {
         return id;
     }
 
-    public Long getAutor() {
+    public String getAutor() {
         return autor;
     }
 
@@ -48,25 +72,16 @@ public class Comentario {
         return numerodelikes;
     }
 
-    public Comentario(Long id, Long autor, String conteudo, Integer numerodelikes) {
-        this.id = id;
-        this.autor = autor;
-        this.conteudo = conteudo;
-        this.numerodelikes = numerodelikes;
+    public void daUmLikeNoComentario() {
+        this.numerodelikes++;
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "NUMG_idDoObjeto")
-    private Long id;
-    @Column(nullable = false,name = "NUMR_autor")
-    private Long autor;
-    @Column(nullable = false,name = "DESC_Conteudo")
-    @Size(min = 50,max = 999,message = "Um comentário deve ter entre 50 e 999 caracteres")
-    private String conteudo;
-    @Column(name = "NUMG_NumeroDeLikes")
-    private Integer numerodelikes;
+    public Long getPostId() {
+        return postId;
+    }
 
-    public void daUmLikeNoComentario(){this.numerodelikes++; }
+    public void setPostId(Long postId) {
+        this.postId = postId;
+    }
 
 }

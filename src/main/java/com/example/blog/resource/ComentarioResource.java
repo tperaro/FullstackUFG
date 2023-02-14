@@ -3,6 +3,8 @@ package com.example.blog.resource;
 import com.example.blog.Model.Comentario;
 import com.example.blog.service.ComentarioService;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,10 +19,10 @@ public class ComentarioResource {
     @Autowired
     private ComentarioService comentarioService;
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Comentario> buscarComentarioPorId(@PathVariable Long id){
-        Comentario comentario = comentarioService.consultarComentarioPorId(id);
-        return ResponseEntity.ok(comentario);
+    @GetMapping("/postid/{id}")
+    public ResponseEntity<List<Comentario>> buscarComentarioPorId(@PathVariable Long id){
+        List<Comentario> comentarios = comentarioService.encontrarComentariosPorPostId(id);
+        return ResponseEntity.ok(comentarios);
     }
 
     @PutMapping()
@@ -33,7 +35,7 @@ public class ComentarioResource {
     @PatchMapping("{id}")
     public Comentario daUmLike(@PathVariable Long id ){return comentarioService.likeComentarioPorId(id);}
 
-    @DeleteMapping
+    @DeleteMapping("{id}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     public void deletaComentario(@PathVariable Long id){comentarioService.deletaComentarioPorId(id);}
 

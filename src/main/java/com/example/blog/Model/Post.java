@@ -16,11 +16,34 @@ import javax.validation.constraints.Size;
 @Entity
 @Table(name = "posts")
 public class Post {
-    public Post(Long id, Integer numerodelikes, String conteudo, Instant dataPublicacao) {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "POST_ID")
+    private Long id;
+
+    @NotNull
+    @Size(min = 5, max = 999, message = "Um post deve ter entre 5 e 999 caracteres")
+    @Column(nullable = false, name = "TITULO")
+    private String titulo;
+
+    @NotNull
+    @Size(min = 50, max = 999, message = "Um post deve ter entre 50 e 999 caracteres")
+    @Column(nullable = false, name = "DESC_Conteudo")
+    private String conteudo;
+
+    @Column(name = "NUMG_NumeroDeLikes")
+    private Integer numerodelikes;
+
+    @CreationTimestamp
+    @Column(name = "DATE_dataPublicacao")
+    private Instant dataPublicacao;
+
+    public Post(Long id, Integer numerodelikes, String conteudo, Instant dataPublicacao, String titulo) {
         this.id = id;
         this.numerodelikes = numerodelikes;
         this.conteudo = conteudo;
         this.dataPublicacao = dataPublicacao;
+        this.titulo = titulo;
     }
 
     public Long getId() {
@@ -55,27 +78,18 @@ public class Post {
         return dataPublicacao;
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "NUMG_idDoObjeto")
-    private Long id;
+    public String getTitulo() {
+        return titulo;
+    }
 
-    @Column(name = "NUMG_NumeroDeLikes")
-    private Integer numerodelikes;
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
 
-    @NotNull
-    @Size(min = 50,max = 999,message = "Um post deve ter entre 50 e 999 caracteres")
-    @Column(nullable = false,name = "DESC_Conteudo")
-    private String conteudo;
-
-
-    @CreationTimestamp
-    @Column(name = "DATE_dataPublicacao")
-    private Instant dataPublicacao;
-
-    public void daUmLike(){
+    public void daUmLike() {
         this.numerodelikes++;
     }
+
     public Post() {
 
     }

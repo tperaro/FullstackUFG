@@ -2,6 +2,9 @@ package com.example.blog.service;
 
 import com.example.blog.Model.Comentario;
 import com.example.blog.repository.ComentarioRepository;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,6 +37,10 @@ public class ComentarioService {
         if (comentarioRepository.existsById(id)){
             comentarioRepository.deleteById(id);
         }
+    }
+
+    public List<Comentario> encontrarComentariosPorPostId(Long postId) {
+        return comentarioRepository.findByPostId(postId);
     }
 
 }
