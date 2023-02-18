@@ -1,4 +1,4 @@
-package com.example.blog.plugins;
+package com.example.musica.plugins;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,7 +19,7 @@ public class SpringFoxConfig implements WebMvcConfigurer {
         return new Docket(DocumentationType.SWAGGER_2)
           .useDefaultResponseMessages(false)    
           .select()            
-          .apis(RequestHandlerSelectors.basePackage("com.example.blog"))              
+          .apis(RequestHandlerSelectors.basePackage("com.example.musica.resource"))
           .paths(PathSelectors.any())                          
           .build();                                           
     }

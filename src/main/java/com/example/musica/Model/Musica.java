@@ -1,4 +1,4 @@
-package com.example.blog.Model;
+package com.example.musica.Model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,7 +10,7 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "comentarios")
-public class Comentario {
+public class Musica {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,10 +30,10 @@ public class Comentario {
     @Column(nullable = false, name = "postid")
     private Long postId;
 
-    public Comentario() {
+    public Musica() {
     }
 
-    public Comentario(Long id, String autor, String conteudo, Integer numerodelikes) {
+    public Musica(Long id, String autor, String conteudo, Integer numerodelikes) {
         this.id = id;
         this.autor = autor;
         this.conteudo = conteudo;

@@ -1,4 +1,4 @@
-package com.example.blog;
+package com.example.musica;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -8,10 +8,10 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @EnableWebMvc
 @SpringBootApplication
-public class BlogApplication {
+public class MusicaApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(BlogApplication.class, args);
+		SpringApplication.run(MusicaApplication.class, args);
 	}
 
 	@Bean
