@@ -2,6 +2,7 @@ package com.example.musica.resource.DTO;
 public class MusicaDTO {
     private String nome;
 
+
     public MusicaDTO(String nome) {
         this.nome = nome;
     }

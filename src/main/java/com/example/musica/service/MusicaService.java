@@ -29,7 +29,7 @@ public class MusicaService {
     }
     public Musica likeComentarioPorId(Long id){
         Musica musica = consultarComentarioPorId(id);
-        musica.daUmLikeNoComentario();
+
         return salvarComentario(musica);
     }
 
@@ -39,8 +39,6 @@ public class MusicaService {
         }
     }
 
-    public List<Musica> encontrarComentariosPorPostId(Long postId) {
-        return musicaRepository.findByPostId(postId);
-    }
+
 
 }
