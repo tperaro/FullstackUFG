@@ -6,10 +6,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.Size;
+
 
 @Entity
-@Table(name = "comentarios")
+@Table(name = "musica")
 public class Musica {
 
     @Id
@@ -17,71 +17,79 @@ public class Musica {
     @Column()
     private Long id;
 
-    @Column(nullable = false, name = "NUMR_autor")
-    private String autor;
+    @Column(nullable = false)
+    private String nome;
 
-    @Column(nullable = false, name = "DESC_Conteudo")
-    @Size(min = 50, max = 999, message = "Um comentário deve ter entre 50 e 999 caracteres")
-    private String conteudo;
+    @Column(nullable = false)
+    private String descricao;
 
-    @Column(name = "NUMG_NumeroDeLikes")
-    private Integer numerodelikes;
+    @Column(nullable = false)
+    private String foto;
 
-    @Column(nullable = false, name = "postid")
-    private Long postId;
+    @Column(nullable = false)
+    private String urlMusica;
+
+    @Column(nullable = false)
+    private String genero;
+
+    public Musica(Long id, String nome, String descricao, String foto, String urlMusica, String genero) {
+        this.id = id;
+        this.nome = nome;
+        this.descricao = descricao;
+        this.foto = foto;
+        this.urlMusica = urlMusica;
+        this.genero = genero;
+    }
 
     public Musica() {
-    }
 
-    public Musica(Long id, String autor, String conteudo, Integer numerodelikes) {
-        this.id = id;
-        this.autor = autor;
-        this.conteudo = conteudo;
-        this.numerodelikes = numerodelikes;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public void setAutor(String autor) {
-        this.autor = autor;
-    }
-
-    public void setConteudo(String conteudo) {
-        this.conteudo = conteudo;
-    }
-
-    public void setNumerodelikes(Integer numerodelikes) {
-        this.numerodelikes = numerodelikes;
     }
 
     public Long getId() {
         return id;
     }
 
-    public String getAutor() {
-        return autor;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public String getConteudo() {
-        return conteudo;
+    public String getNome() {
+        return nome;
     }
 
-    public Integer getNumerodelikes() {
-        return numerodelikes;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    public void daUmLikeNoComentario() {
-        this.numerodelikes++;
+    public String getDescricao() {
+        return descricao;
     }
 
-    public Long getPostId() {
-        return postId;
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
-    public void setPostId(Long postId) {
-        this.postId = postId;
+    public String getFoto() {
+        return foto;
     }
 
+    public void setFoto(String foto) {
+        this.foto = foto;
+    }
+
+    public String getUrlMusica() {
+        return urlMusica;
+    }
+
+    public void setUrlMusica(String urlMusica) {
+        this.urlMusica = urlMusica;
+    }
+
+    public String getGenero() {
+        return genero;
+    }
+
+    public void setGenero(String genero) {
+        this.genero = genero;
+    }
 }
