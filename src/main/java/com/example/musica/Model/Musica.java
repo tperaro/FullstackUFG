@@ -27,17 +27,17 @@ public class Musica {
     private String foto;
 
     @Column(nullable = false)
-    private String urlMusica;
+    private String musica;
 
     @Column(nullable = false)
     private String genero;
 
-    public Musica(Long id, String nome, String descricao, String foto, String urlMusica, String genero) {
+    public Musica(Long id, String nome, String descricao, String foto, String musica, String genero) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
         this.foto = foto;
-        this.urlMusica = urlMusica;
+        this.musica = musica;
         this.genero = genero;
     }
 
@@ -77,12 +77,12 @@ public class Musica {
         this.foto = foto;
     }
 
-    public String getUrlMusica() {
-        return urlMusica;
+    public String getMusica() {
+        return musica;
     }
 
-    public void setUrlMusica(String urlMusica) {
-        this.urlMusica = urlMusica;
+    public void setMusica(String musica) {
+        this.musica = musica;
     }
 
     public String getGenero() {
