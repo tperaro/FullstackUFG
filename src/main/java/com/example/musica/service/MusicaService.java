@@ -67,8 +67,13 @@ public class MusicaService {
   }
 
   public void deleteById(Long id) {
-    if (musicaRepository.existsById(id)) {
+    var foundMusic = musicaRepository.findById(id);
+    if (foundMusic.isPresent()) {
       musicaRepository.deleteById(id);
+      try {
+        storageService.delete(foundMusic.get().getFoto());
+        storageService.delete(foundMusic.get().getMusica());
+      } catch (Exception e) {}
     }
   }
 
