@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.FileSystemUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.example.musica.MusicaApplication;
 import com.example.musica.service.exceptions.StorageServiceException;
 
 @Service
@@ -21,7 +22,7 @@ public class FileSystemStorageService implements StorageService {
     private final Path rootLocation;
 
     public FileSystemStorageService() {
-        this.rootLocation = Paths.get("src", "main", "resources", "static");
+        this.rootLocation = MusicaApplication.getUploadPath();
     }
 
     @Override

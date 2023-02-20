@@ -15,6 +15,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.filter.CharacterEncodingFilter;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import javax.servlet.MultipartConfigElement;
 
@@ -48,10 +50,19 @@ public class MusicaApplication implements WebMvcConfigurer {
 
 	@Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry
-          .addResourceHandler("/**")
-          .addResourceLocations("classpath:/META-INF/resources/", "classpath:/resources/", "classpath:/static/", "classpath:/public/");
+		exposeDirectory("uploads2", registry);
+    }
 
+	public static Path getUploadPath() {
+		return Paths.get("uploads2");
+	}
+
+	private void exposeDirectory(String dirName, ResourceHandlerRegistry registry) {
+        String uploadPath = getUploadPath().toFile().getAbsolutePath();
+         
+        if (dirName.startsWith("../")) dirName = dirName.replace("../", "");
+         
+        registry.addResourceHandler("/**").addResourceLocations("file:" + uploadPath + "/");
     }
 
 	@Bean
